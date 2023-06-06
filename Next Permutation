@@ -1,0 +1,41 @@
+class Solution {
+    public void nextPermutation(int[] a) {
+       int n=a.length;
+       int maxindx1=-1;
+       int maxindx2=-1;
+       for(int i=n-2;i>=0;i--){
+           if(a[i]<a[i+1]){
+               maxindx1=i;
+               break;
+           }
+       }
+       if(maxindx1==-1)
+       {
+           reverse(a,0);
+       } 
+       else
+       {
+           for(int i=n-1;i>=0;i--){
+               if(a[i]>a[maxindx1]){
+                   maxindx2=i;
+                   break;
+               }
+           }
+       swap(a,maxindx1,maxindx2);
+       reverse(a,maxindx1+1);
+       }
+    }
+    void swap(int a[],int in1,int in2){
+        int temp=a[in1];
+         a[in1]=a[in2];
+         a[in2]=temp;
+    }
+    void reverse(int a[],int start){
+        int end=a.length-1;
+        while(start<end){
+            swap(a,start,end);
+            start++;
+            end--;
+        }
+    }
+}
