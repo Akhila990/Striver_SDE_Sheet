@@ -15,7 +15,7 @@ class Solution {
        } 
        else
        {
-           for(int i=n-1;i>=0;i--){
+       for(int i=n-1;i>=0;i--){
                if(a[i]>a[maxindx1]){
                    maxindx2=i;
                    break;
@@ -38,4 +38,37 @@ class Solution {
             end--;
         }
     }
-}
+}----------------------------------------codeStudio solution---------------------------------------------------
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+import java.util.Collections;
+public class Solution 
+{
+	public static ArrayList<Integer> nextPermutation(ArrayList<Integer> permutation) 
+	{
+		int n=permutation.size();
+		int index=-1;
+		for(int i=n-2;i>=0;i--){
+			if(permutation.get(i)<permutation.get(i+1)){
+				index=i;
+				break;
+			}
+		}
+		if(index==-1){
+			Collections.reverse(permutation);
+			return permutation;
+		}
+		for(int i=n-1;i>=0;i--){
+			if(permutation.get(i)>permutation.get(index)){
+				int temp=permutation.get(i);
+				permutation.set(i,permutation.get(index));
+				permutation.set(index,temp);
+				break;
+			}
+		}
+		List<Integer> subList=permutation.subList(index+1, n);
+		Collections.reverse(subList);
+        return permutation;	
+		}
+  }
